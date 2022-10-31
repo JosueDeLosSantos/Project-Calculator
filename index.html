@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
 
@@ -12,35 +13,49 @@
 
     <div class="case">
 
-        <div class="screen"></div>
+        <div class="screen"><p class="screen-content"></p></div>
 
         <div class="buttons">
 
-            <div class="first-section">
-                <div class="key point">.</div>
-                <div class="key operator">/</div>
-                <div class="key operator">*</div>
-                <div class="key operator">-</div>
+            <div class="first-separator">
+                <div class="first-section">
+                    <div class="key point"><p>C</p></div>
+                    <div class="key operator"><p>/</p></div>
+                    <div class="key operator"><p>*</p></div>
+                    <div class="key operator"><p>-</p></div>
+                </div>
             </div>
 
-            <div class="second-section">
-                <div class="key number">1</div>
-                <div class="key number">2</div>
-                <div class="key number">3</div>
-                <div class="key number">4</div>
-                <div class="key number">5</div>
-                <div class="key number">6</div>
-                <div class="key number">7</div>
-                <div class="key number">8</div>
-                <div class="key number">9</div>
-            </div>
+            <div class="second-separator">
 
-            <div class="third-section">
-                <div class="key plus">+</div>
-                <div class="key equal">=</div>
-            </div>
+                <div class="second-section">
+                    <div class="set1">
+                        <div class="key number"><p>1</p></div>
+                        <div class="key number"><p>2</p></div>
+                        <div class="key number"><p>3</p></div>
+                    </div>
+                    <div class="set2">
+                        <div class="key number"><p>4</p></div>
+                        <div class="key number"><p>5</p></div>
+                        <div class="key number"><p>6</p></div>
+                    </div>
+                    <div class="set3">
+                        <div class="key number"><p>7</p></div>
+                        <div class="key number"><p>8</p></div>
+                        <div class="key number"><p>9</p></div>
+                    </div>
+                    <div class="set4">
+                        <div class="key zero"><p>0</p></div>
+                        <div class="key point"><p>.</p></div>
+                    </div>
+                </div>
+    
+                <div class="third-section">
+                    <div class="key plus"><p>+</p></div>
+                    <div class="key equal"><p>=</p></div>
+                </div>
 
-            <div class="key zero">0</div>
+            </div>
 
         </div>
     </div>
