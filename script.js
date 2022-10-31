@@ -1,18 +1,19 @@
 
 
-let add = '+';
-let subtract = '-';
-let multiply = '*';
-let divide = '/';
-let number1 = "5";
-let number2 = "5";
+let add = function(...pams){
+    let store = [...pams]
+    return store.reduce((i, j) => i + j, 0)
+};
+let subtract = (pam1, pam2) => pam1 - pam2;
+let multiply = (pam1, pam2) => pam1 * pam2;
+let divide = (pam1, pam2) => pam1 / pam2;
+let arraynum = [5, 5 ,5, 20]
 
-function operator (symbol, num1, num2){
+function operator (symbol, [...pams]){
 
     if(symbol == '+'){
-        let a =  parseInt(num1)
-        let b = parseInt(num2)
-        return console.log(a + b);
+    
+        return console.log(add(...pams));
 
     } else if(symbol == '-'){
         let a =  parseInt(num1)
@@ -31,8 +32,8 @@ function operator (symbol, num1, num2){
 
     }
 }
-
-operator(multiply, number1, number2)
+//Tests function
+operator('+', arraynum)
 
 //Parse numeric values.
 function isNumeric(str) {
