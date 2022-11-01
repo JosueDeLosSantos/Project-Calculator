@@ -1,34 +1,11 @@
 
-
+//Basic arithmetic functions
 let add = (pam1, pam2) => pam1 + pam2;
 let subtract = (pam1, pam2) => pam1 - pam2;
 let multiply = (pam1, pam2) => pam1 * pam2;
 let divide = (pam1, pam2) => pam1 / pam2;
-let firstNum = 5;
-let secondNum = 5;
 
-function operator (symbol, pam1, pam2){
 
-    if(symbol == '+'){
-    
-        return console.log(add(pam1, pam2));
-
-    } else if(symbol == '-'){
-
-        return console.log(subtract(pam1, pam2));
-
-    } else if(symbol == '*'){
-
-        return console.log(multiply(pam1, pam2));
-
-    } else if(symbol == '/'){
-
-        return console.log(divide(pam1, pam2));
-
-    }
-}
-//Tests function
-operator('+', firstNum, secondNum)
 
 //Parse numeric values.
 function isNumeric(str) {
@@ -47,60 +24,130 @@ const numbers = Array.from(number);
 const point = document.querySelector('.point');
 const equal = document.querySelector('.equal');
 
-//Clear the whole screen
-let num1 = 0;
-let num2 = 0;
-let symbol = null;
+
+let num1 = [];
+let num2 = [];
+let symbol = '';
 let numCounter = 0;
+let temp1 = 0;
+let temp2 = 0;
+let result = 0;
+let tempResult = 0;
+
+//Clear the whole screen
 function cleaner(){
     screen.innerText = '';
-    num1 = 0;
-    num2 = 0;
+    num1 = [];
+    num2 = [];
+    symbol = '';
+    numCounter = 0;
+    temp1 = 0;
+    temp2 = 0;
 }
 
-//Append arithmetic symbols
+//Calculator
+function operator (symbol, pam1, pam2){
+
+    if(symbol == '+'){
+        
+        result = add(pam1, pam2)
+        return console.log(result);
+
+    } else if(symbol == '-'){
+
+        result = subtract(pam1, pam2)
+        return console.log(result);
+
+    } else if(symbol == '*'){
+
+        result = add(pam1, pam2)
+        return console.log(result);
+
+    } else if(symbol == '/'){
+
+        result = add(pam1, pam2)
+        return console.log(result);
+
+    }
+}
+
+//Screen display
 function Show(e){
-    
-    //Screen display
+
     screen.innerText += `${e.target.innerText}`;
     //Pair of numbers
     if (isNumeric(e.target.innerText) && numCounter == 0) {
 
-        numCounter++;
-        num1 = parseFloat(e.target.innerText);
-        console.log(num1);
+        num1.push(e.target.innerText);
+        temp1 = parseFloat(num1.join(''));
+        e.stopPropagation();
 
-    } else if (isNumeric(e.target.innerText) && numCounter == 1) {
+    }else if (isNumeric(e.target.innerText) && numCounter > 0) {
 
-        num2 = parseFloat(e.target.innerText);
-        console.log(num2);
-        numCounter = 0;
+        num2.push(e.target.innerText);
+        temp2 = parseFloat(num2.join(''));
+        console.log(temp1)
+        console.log(temp2)
+
+        switch(symbol) {
+            case '+':
+                tempResult = temp1 + temp2
+              break;
+            case '-':
+                tempResult = temp1 - temp2
+              break;
+            case '*':
+                tempResult = temp1 * temp2
+              break;
+            case '/':
+                tempResult = temp1 / temp2
+              break;
+            default:
+              // code block
+          }
+          console.log(tempResult)
+        /*
+        if(e.target.innerText == '+') tempResult = temp1 + temp2;
+        if(e.target.innerText == '-') tempResult = temp1 - temp2;
+        
+        */
+
+        //e.stopPropagation();
+
     }
 
-    //Arithmetic symbol
+    //Arithmetic symbols
     if(e.target.innerText == '+' ||
     e.target.innerText == '-' ||
     e.target.innerText == '*' ||
     e.target.innerText == '/'){
 
         symbol = e.target.innerText;
-        console.log(e.target.innerText);
+        numCounter++;
+        //console.log(tempResult);
+        num2 = [];
+        temp2 = 0;
+        if(numCounter > 1) temp1 = tempResult;
+        console.log(temp1)
+        console.log(temp2)
+        //e.stopPropagation();
     }
-    
+
+    e.stopPropagation();
 
 }
 
-function Calc(){
-    //screen.innerText = `${console.log(screen.innerText)}`;
-    console.log(5+5);
+function finalResut(){
+
+    screen.innerText += `${tempResult}`;
+
 }
 
+
+
+//Event listeners
 clear.addEventListener('click', cleaner)
 operatorKeys.forEach(i => i.addEventListener('click', Show))
 numbers.forEach(i => i.addEventListener('click', Show))
 point.addEventListener('click', Show)
-
-
-
-
-
+equal.addEventListener('click', finalResut)
