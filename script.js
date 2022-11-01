@@ -1,17 +1,45 @@
-
+/*
 //Basic arithmetic functions
 let add = (pam1, pam2) => pam1 + pam2;
 let subtract = (pam1, pam2) => pam1 - pam2;
 let multiply = (pam1, pam2) => pam1 * pam2;
 let divide = (pam1, pam2) => pam1 / pam2;
+*/
 
+/*
+//Calculator
+function operator (symbol, pam1, pam2){
+
+    if(symbol == '+'){
+        
+        result = add(pam1, pam2)
+        return console.log(result);
+
+    } else if(symbol == '-'){
+
+        result = subtract(pam1, pam2)
+        return console.log(result);
+
+    } else if(symbol == '*'){
+
+        result = add(pam1, pam2)
+        return console.log(result);
+
+    } else if(symbol == '/'){
+
+        result = add(pam1, pam2)
+        return console.log(result);
+
+    }
+}
+*/
 
 
 //Parse numeric values.
 function isNumeric(str) {
     if (typeof str != "string") return false // we only process strings!  
     return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
-           !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+           !isNaN(parseFloat(str)) || str == '.' // ...and ensure strings of whitespace fail and ensures points are accepted
   }
 
 //Selectors
@@ -45,32 +73,6 @@ function cleaner(){
     temp2 = 0;
 }
 
-//Calculator
-function operator (symbol, pam1, pam2){
-
-    if(symbol == '+'){
-        
-        result = add(pam1, pam2)
-        return console.log(result);
-
-    } else if(symbol == '-'){
-
-        result = subtract(pam1, pam2)
-        return console.log(result);
-
-    } else if(symbol == '*'){
-
-        result = add(pam1, pam2)
-        return console.log(result);
-
-    } else if(symbol == '/'){
-
-        result = add(pam1, pam2)
-        return console.log(result);
-
-    }
-}
-
 //Screen display
 function Show(e){
 
@@ -80,14 +82,11 @@ function Show(e){
 
         num1.push(e.target.innerText);
         temp1 = parseFloat(num1.join(''));
-        e.stopPropagation();
 
     }else if (isNumeric(e.target.innerText) && numCounter > 0) {
 
         num2.push(e.target.innerText);
         temp2 = parseFloat(num2.join(''));
-        console.log(temp1)
-        console.log(temp2)
 
         switch(symbol) {
             case '+':
@@ -105,44 +104,30 @@ function Show(e){
             default:
               // code block
           }
-          console.log(tempResult)
-        /*
-        if(e.target.innerText == '+') tempResult = temp1 + temp2;
-        if(e.target.innerText == '-') tempResult = temp1 - temp2;
-        
-        */
-
-        //e.stopPropagation();
 
     }
 
     //Arithmetic symbols
     if(e.target.innerText == '+' ||
-    e.target.innerText == '-' ||
-    e.target.innerText == '*' ||
-    e.target.innerText == '/'){
+        e.target.innerText == '-' ||
+        e.target.innerText == '*' ||
+        e.target.innerText == '/'){
 
         symbol = e.target.innerText;
         numCounter++;
-        //console.log(tempResult);
         num2 = [];
         temp2 = 0;
         if(numCounter > 1) temp1 = tempResult;
-        console.log(temp1)
-        console.log(temp2)
-        //e.stopPropagation();
-    }
 
-    e.stopPropagation();
+    }
 
 }
 
 function finalResut(){
 
-    screen.innerText += `${tempResult}`;
+    screen.innerText = `${tempResult}`;
 
 }
-
 
 
 //Event listeners
