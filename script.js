@@ -1,39 +1,34 @@
 
 
-let add = function(...pams){
-    let store = [...pams]
-    return store.reduce((i, j) => i + j, 0)
-};
+let add = (pam1, pam2) => pam1 + pam2;
 let subtract = (pam1, pam2) => pam1 - pam2;
 let multiply = (pam1, pam2) => pam1 * pam2;
 let divide = (pam1, pam2) => pam1 / pam2;
-let arraynum = [5, 5 ,5, 20]
+let firstNum = 5;
+let secondNum = 5;
 
-function operator (symbol, [...pams]){
+function operator (symbol, pam1, pam2){
 
     if(symbol == '+'){
     
-        return console.log(add(...pams));
+        return console.log(add(pam1, pam2));
 
     } else if(symbol == '-'){
-        let a =  parseInt(num1)
-        let b = parseInt(num2)
-        return console.log(a - b);
+
+        return console.log(subtract(pam1, pam2));
 
     } else if(symbol == '*'){
-        let a =  parseInt(num1)
-        let b = parseInt(num2)
-        return console.log(a * b);
+
+        return console.log(multiply(pam1, pam2));
 
     } else if(symbol == '/'){
-        let a =  parseInt(num1)
-        let b = parseInt(num2)
-        return console.log(a / b);
+
+        return console.log(divide(pam1, pam2));
 
     }
 }
 //Tests function
-operator('+', arraynum)
+operator('+', firstNum, secondNum)
 
 //Parse numeric values.
 function isNumeric(str) {
@@ -42,9 +37,7 @@ function isNumeric(str) {
            !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
   }
 
-
-
-
+//Selectors
 const screen = document.querySelector('.screen');
 const clear = document.querySelector('.clear');
 const operatorKey = document.querySelectorAll('.operator');
@@ -55,20 +48,46 @@ const point = document.querySelector('.point');
 const equal = document.querySelector('.equal');
 
 //Clear the whole screen
-let num1 = [];
+let num1 = 0;
+let num2 = 0;
+let symbol = null;
+let numCounter = 0;
 function cleaner(){
     screen.innerText = '';
-    num1 = [];
+    num1 = 0;
+    num2 = 0;
 }
 
 //Append arithmetic symbols
 function Show(e){
+    
+    //Screen display
     screen.innerText += `${e.target.innerText}`;
-    if (isNumeric(e.target.innerText)) {
-        num1.push(parseFloat(e.target.innerText));
+    //Pair of numbers
+    if (isNumeric(e.target.innerText) && numCounter == 0) {
+
+        numCounter++;
+        num1 = parseFloat(e.target.innerText);
         console.log(num1);
+
+    } else if (isNumeric(e.target.innerText) && numCounter == 1) {
+
+        num2 = parseFloat(e.target.innerText);
+        console.log(num2);
+        numCounter = 0;
+    }
+
+    //Arithmetic symbol
+    if(e.target.innerText == '+' ||
+    e.target.innerText == '-' ||
+    e.target.innerText == '*' ||
+    e.target.innerText == '/'){
+
+        symbol = e.target.innerText;
+        console.log(e.target.innerText);
     }
     
+
 }
 
 function Calc(){
@@ -79,7 +98,7 @@ function Calc(){
 clear.addEventListener('click', cleaner)
 operatorKeys.forEach(i => i.addEventListener('click', Show))
 numbers.forEach(i => i.addEventListener('click', Show))
-point.addEventListener('click', Show);
+point.addEventListener('click', Show)
 
 
 
