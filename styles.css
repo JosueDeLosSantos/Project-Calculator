@@ -33,7 +33,9 @@ h1 {
     align-items: center;
     font-size: 25px;
     font-weight: 800;
+    overflow: hidden;
 }
+
 
 .buttons {
     display: flex;
