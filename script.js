@@ -1,5 +1,4 @@
-
-
+/*Basic Calculator*/
 
 //Parse numeric values.
 function isNumeric(str) {
@@ -47,22 +46,24 @@ function cleaner(){
 
 //Screen display
 function Show(e){
-
+     
     //First number
     if (isNumeric(e.target.innerText) && numCounter == 0) {
 
         if(e.target.innerText != '.' && decimalTester == false) {
-            screen.innerText += `${e.target.innerText}`;
 
+            screen.innerText += `${e.target.innerText}`;
             num1.push(e.target.innerText);
             temp1 = parseFloat(num1.join(''));
 
         }else if (e.target.innerText == '.' && decimalTester == true){
 
             return;
+
         }
         
         if(e.target.innerText == '.' && Number.isInteger(temp1)){
+
             screen.innerText += `${e.target.innerText}`;
             decimalTester = true;
             num1.push(e.target.innerText);
@@ -79,20 +80,24 @@ function Show(e){
         } 
         
         if(e.target.innerText == '.' && temp1 == null){
+
             return;
+
         } 
     
     //Second number
     }else if (isNumeric(e.target.innerText) && numCounter > 0) {
-
-        symbolCounter = 0; //Resests the symbolCounter varieble to void arithmetic symbols from been typed consecutively.
+        
+        symbolCounter = 0; //Resests the symbolCounter variable to avoid arithmetic symbols from been typed consecutively.
         
         /*the function below cleans everything if the equal key button has been typed. 
         I placed this fuction inside the 'second number'block because the 'Second number' block of code 
         is activated when the equal key button is typed.*/
         if(resultCounter > 0){
+
             cleaner();
             return
+
         }
 
         if(e.target.innerText != '.' && decimalTester == false) {
@@ -104,9 +109,11 @@ function Show(e){
         }else if (e.target.innerText == '.' && decimalTester == true){//Avoids decimal points from been typed consecutively.
 
             return;
+
         }
         
         if(e.target.innerText == '.' && Number.isInteger(temp2)){
+
             screen.innerText += `${e.target.innerText}`;
             decimalTester = true; 
             num2.push(e.target.innerText);
@@ -119,12 +126,16 @@ function Show(e){
 
             num2.push(e.target.innerText);
             temp2 = parseFloat(num2.join(''));
+
         } 
         
         if(e.target.innerText == '.' && temp2 == null){
-            return;
-        } 
 
+            return;
+
+        } 
+        
+        //Calculator
         switch(symbol) {
             case '+':
                 tempResult = temp1 + temp2
@@ -139,7 +150,6 @@ function Show(e){
                 tempResult = temp1 / temp2
               break;
             default:
-              // code block
           }
 
     }
@@ -151,22 +161,38 @@ function Show(e){
         e.target.innerText == '/'){
 
         if(resultCounter > 0){ //Cleans everything if a previous result has been achieved.
+
             cleaner();
             return
+
         }
 
-        symbolCounter++; //Avoids arithmetic symbols from been typed consecutively. 
+        symbolCounter++; 
         
-        if(symbolCounter > 1){
+        if(symbolCounter > 1){ //Avoids arithmetic symbols from been typed consecutively.
+
             return;
+
         } else if (symbolCounter <= 1){
-            symbol = e.target.innerText;
-            screen.innerText += `${e.target.innerText}`;
-            numCounter++; //Ensures second number is not typed until an arithmetic symbol be entered.
-            decimalTester = false; //Resets the decimalTester variable so that the second number be entered correctly.
-            num2 = []; //Resets the num2 variable so that the second number be entered correctly.
-            temp2 = null; //Resets the temp2 variable so that the second number be entered correctly.
-            if(numCounter > 1) temp1 = tempResult;
+            
+            //The condition below makes sure that only the + and - operators be allowed to be clicked on the first key stroke.
+            if ((e.target.innerText == '*' || e.target.innerText == '/') && symbol == '' && temp1 == null){
+
+                cleaner();
+                return
+
+            } else {
+
+                symbol = e.target.innerText;
+                screen.innerText += `${e.target.innerText}`
+                numCounter++; //Ensures second number is not typed until an arithmetic symbol be entered.
+                decimalTester = false; //Resets the decimalTester variable so that the second number be entered correctly.
+                num2 = []; //Resets the num2 variable so that the second number be entered correctly.
+                temp2 = null; //Resets the temp2 variable so that the second number be entered correctly.
+                if(numCounter > 1) temp1 = tempResult;
+
+            }
+            
         }
 
         
@@ -179,20 +205,35 @@ function finalResut(){
 
 
     if(resultCounter > 0){ //Cleans everything if a previous result has been achieved.
+
         cleaner();
         return
+
     } else if (resultCounter == 0){
+
         resultCounter++;
+
         if (tempResult.toString() == 'Infinity') {
-            screen.innerText = "Can't divide by 0";
+
+            screen.innerText = "ERROR";
+
         } else {
             
             if(tempResult.toString() != 'Infinity'){
 
                 if(tempResult.toString() == 'NaN') {
-                    screen.innerText = "Can't divide by 0";
-                } else {
+
+                    screen.innerText = "ERROR";
+
+                } else if(tempResult.toString() != 'NaN' && !Number.isInteger(tempResult)){//Parse whether final result is an integer number.
+
+                    tempResult = Math.round(tempResult * 10) / 10; //Rounds a number to 1 decimal place.
                     screen.innerText = tempResult;
+
+                } else {
+
+                    screen.innerText = tempResult;
+
                 }
                 
             }
@@ -209,3 +250,4 @@ operatorKeys.forEach(i => i.addEventListener('click', Show))
 numbers.forEach(i => i.addEventListener('click', Show))
 point.addEventListener('click', Show)
 equal.addEventListener('click', finalResut)
+
