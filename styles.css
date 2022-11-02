@@ -26,7 +26,7 @@ h1 {
 
 .screen {
     height: 60px;
-    background: rgb(170, 206, 170);
+    background: linear-gradient(to bottom right, #C1E3FF, #ABC7FF);
     margin-bottom: 5px;
     display: flex;
     justify-content: center;
@@ -53,7 +53,6 @@ h1 {
     align-items: center;
     justify-content: center;
     flex: 1;
-    background: grey;
     border: 1px solid black;
     text-align: center;
 
@@ -104,7 +103,7 @@ h1 {
     align-items: center;
     justify-content: center;
     flex: 1;
-    background: grey;
+    background: linear-gradient(to bottom right, #C4E759, #6DE195);
     border: 1px solid black;
     text-align: center;
 }
@@ -114,7 +113,7 @@ h1 {
     align-items: center;
     justify-content: center;
     flex: 1;
-    background: grey;
+    background: linear-gradient(to bottom right, #C4E759, #6DE195);
     border: 1px solid black;
     text-align: center;
     flex: 2;
@@ -125,20 +124,10 @@ h1 {
     align-items: center;
     justify-content: center;
     flex: 1;
-    background: grey;
+    background: linear-gradient(to bottom right, #C4E759, #6DE195);
     border: 1px solid black;
     text-align: center;
     flex: 1;
-}
-
-.plus {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    background: grey;
-    border: 1px solid black;
-    text-align: center;
 }
 
 .equal {
@@ -146,7 +135,7 @@ h1 {
     align-items: center;
     justify-content: center;
     flex: 1;
-    background: grey;
+    background: linear-gradient(to bottom right, #41D8DD, #5583EE);
     border: 1px solid black;
     text-align: center;
 }
@@ -154,4 +143,27 @@ h1 {
 .key{
     font-size: 25px;
     font-weight: 800;
+}
+
+.multiply {
+    font-size: 22px;
+    background-image: linear-gradient(to bottom right, #41D8DD, #5583EE);
+}
+
+.minus, .division {
+    background-image: linear-gradient(to bottom right, #41D8DD, #5583EE);
+}
+
+.plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    background: linear-gradient(to bottom right, #41D8DD, #5583EE);
+    border: 1px solid black;
+    text-align: center;
+}
+
+.clear {
+    background-image: linear-gradient(to bottom right, #41D8DD, #5583EE);
 }
