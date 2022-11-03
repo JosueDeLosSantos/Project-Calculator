@@ -22,6 +22,7 @@ h1 {
     background: rgb(49, 31, 31);
     padding: 10px;
     margin: auto;
+    border-radius: 10px;
 }
 
 .screen {
