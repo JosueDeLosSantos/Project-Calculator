@@ -143,7 +143,7 @@ function Show(e){
             case '-':
                 tempResult = temp1 - temp2
               break;
-            case '*':
+            case 'x':
                 tempResult = temp1 * temp2
               break;
             case '/':
@@ -157,7 +157,7 @@ function Show(e){
     //Arithmetic symbols catcher
     if(e.target.innerText == '+' ||
         e.target.innerText == '-' ||
-        e.target.innerText == '*' ||
+        e.target.innerText == 'x' ||
         e.target.innerText == '/'){
 
         if(resultCounter > 0){ //Cleans everything if a previous result has been achieved.
@@ -176,7 +176,7 @@ function Show(e){
         } else if (symbolCounter <= 1){
             
             //The condition below makes sure that only the + and - operators be allowed to be clicked on the first key stroke.
-            if ((e.target.innerText == '*' || e.target.innerText == '/') && symbol == '' && temp1 == null){
+            if ((e.target.innerText == 'x' || e.target.innerText == '/') && symbol == '' && temp1 == null){
 
                 cleaner();
                 return
